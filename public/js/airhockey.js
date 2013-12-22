@@ -3,18 +3,20 @@ var ctx = platform.getContext('2d');
 
 var paddle = [
   {
-    x: 500,
-    y: 200,
+    // right paddle
+    x: (platform.width - 25),
+    y: (platform.height / 2),
     radius: 25,
     speed: 500,
-    color: 'white'
+    color: 'red'
   },
   {
-    x: 200,
-    y: 200,
+    // left paddle
+    x: 25,
+    y: (platform.height / 2),
     radius: 25,
     speed: 500,
-    color: 'white'
+    color: 'red'
   }
 ];
 
@@ -31,7 +33,7 @@ window.addEventListener('keyup', function(e) {
 });
 
 function update(mod) {
-  //Movement for right paddle
+  // Movement for right paddle
   if (37 in keysDown && paddle[0].x > (platform.width / 2) + 32.5) {
     paddle[0].x -= paddle[0].speed * mod;
   }
@@ -44,7 +46,7 @@ function update(mod) {
   if (40 in keysDown && paddle[0].y < platform.height - 30) {
     paddle[0].y += paddle[0].speed * mod;
   }
-  //Movement for left paddle
+  // Movement for left paddle
   if (65 in keysDown && paddle[1].x > 30) {
     paddle[1].x -= paddle[1].speed * mod;
   }
@@ -61,8 +63,10 @@ function update(mod) {
 
 function render() {
   ctx.fillStyle = '#000';
-  ctx.fillRect(0, 0, (platform.width / 2) - 2.5, platform.height);
-  ctx.fillRect((platform.width / 2) + 2.5, 0, (platform.width /2), platform.height);
+  ctx.fillRect(0, 0, platform.width, platform.height);
+  ctx.fillStyle = 'white';
+  ctx.fillRect((platform.width / 2) - 5, 0, 10, platform.height);
+  //ctx.fillRect((platform.width / 2) + 2.5, 0, (platform.width /2), platform.height);
   
   ctx.beginPath();
   ctx.fillStyle = paddle[0].color;
